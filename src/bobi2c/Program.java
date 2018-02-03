@@ -8,8 +8,8 @@ public class Program {
 	private static int address = (byte)0x70;
 	
 	private static final byte TAKE_READING = (byte)0x51;
-	private static final byte DATA_MSB = (byte)0xE1;
-	private static final byte DATA_LSB = (byte)0xE2;
+	private static final byte DATA_MSB = (byte)0xE0;
+	private static final byte DATA_LSB = (byte)0xE1;
 	
 	public static void main(String[] args) {
 		final Console console = new Console();
