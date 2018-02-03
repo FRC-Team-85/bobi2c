@@ -7,9 +7,10 @@ public class Program {
 
 	private static int address = (byte)0x70;
 	
+	
 	private static final byte TAKE_READING = (byte)0x51;
-	private static final byte DATA_MSB = (byte)0xE0;
-	private static final byte DATA_LSB = (byte)0xE1;
+	private static final int DATA_MSB = 225;
+	private static final int DATA_LSB = 226;
 	
 	public static void main(String[] args) {
 		final Console console = new Console();
@@ -19,10 +20,10 @@ public class Program {
 			I2CDevice device = i2c.getDevice(address);
 			while(true) {
 				try	{
-					device.write(TAKE_READING);
+					device.write(224, TAKE_READING);
 					Thread.sleep(100);
-					int msb = device.read(DATA_MSB);
-					int lsb = device.read(DATA_LSB);
+					int msb = device.read();
+					int lsb = device.read();
 					console.println("MSB = " + String.format("0x%02x", msb));
 					console.println("LSB = " + String.format("0x%02x", lsb));
 					Thread.sleep(50);
