@@ -17,8 +17,8 @@ public class Program {
 		try {
 			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
 			I2CDevice device = i2c.getDevice(address);
-			console.promptForExit();
-			while(!console.exiting()) {
+			//console.promptForExit();
+			while(true) {
 				device.write(TAKE_READING);
 				Thread.sleep(100);
 				int msb = device.read(DATA_MSB);
