@@ -13,7 +13,7 @@ public class Program {
 	
 	public static void main(String[] args) {
 		final Console console = new Console();
-		byte[] buffer = new byte[2];
+		byte[] buffer = new byte[3];
 		
 		try {
 			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
