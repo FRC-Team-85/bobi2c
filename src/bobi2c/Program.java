@@ -23,12 +23,12 @@ public class Program {
 					device.write(TAKE_READING);
 					Thread.sleep(80);
 					device.read(DATA_REGISTER, buffer, 0, 2);
-					int msb = buffer[0];
-					int lsb = buffer[1];
+					byte msb = buffer[0];
+					byte lsb = buffer[1];
 					console.println("MSB = " + String.format("0x%02x", msb));
 					console.println("LSB = " + String.format("0x%02x", lsb));
 					int range = msb * 256 + lsb;
-					console.println("Range = " + range);
+					console.println("Range = " + Integer.toUnsignedString(range));
 					Thread.sleep(50);
 				} catch (Exception ex) {
 					console.println(ex.toString());
