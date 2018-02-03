@@ -23,11 +23,11 @@ public class Program {
 					device.write(TAKE_READING);
 					Thread.sleep(80);
 					device.read(DATA_REGISTER, buffer, 0, 2);
-					byte msb = buffer[0];
-					byte lsb = buffer[1];
-					console.println("MSB = " + String.format("0x%02x", msb) + " (int: " + (int)msb + ")");
-					console.println("LSB = " + String.format("0x%02x", lsb) + " (int: " + (int)lsb + ")");
-					int range = (int)msb * 256 + (int)lsb;
+					short msb = (short)(buffer[0] & 0xFF);
+					short lsb = (short)(buffer[1] & 0xFF);
+					console.println("MSB = " + String.format("0x%02x", buffer[0]) + " (int: " + msb + ")");
+					console.println("LSB = " + String.format("0x%02x", buffer[1]) + " (int: " + lsb + ")");
+					int range = msb * 256 + lsb;
 					console.println("Range = " + range);
 					Thread.sleep(50);
 				} catch (Exception ex) {
