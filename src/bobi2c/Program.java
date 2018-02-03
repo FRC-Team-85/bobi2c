@@ -23,11 +23,12 @@ public class Program {
 					device.read(225, buffer, 0, 2);
 					short msb = (short)(buffer[0] & 0x7F);
 					short lsb = (short)(buffer[1] & 0xFF);
-					console.println("MSB = " + String.format("0x%02x", buffer[0]) + " (int: " + msb + ")");
-					console.println("LSB = " + String.format("0x%02x", buffer[1]) + " (int: " + lsb + ")");
+					console.println("MSB: " + String.format("0x%02x", buffer[0]) + " (int: " + msb + ")");
+					console.println("LSB: " + String.format("0x%02x", buffer[1]) + " (int: " + lsb + ")");
+					console.println("Bits: " + Integer.toBinaryString(msb) + " " + Integer.toBinaryString(lsb));
 					int range = msb * 256 + lsb;
-					console.println("Range = " + range + "cm (" + range / 2.54 + "in)");
-					Thread.sleep(50);
+					console.println("Range: " + range + "cm (" + range / 2.54 + "in)");
+					Thread.sleep(10);
 				} catch (Exception ex) {
 					console.println(ex.toString());
 				}				
