@@ -9,6 +9,7 @@ public class Program {
 	
 	
 	private static final byte TAKE_READING = (byte)0x51;
+	private static final byte DATA_REGISTER = (byte)0xE1;
 	
 	public static void main(String[] args) {
 		final Console console = new Console();
@@ -20,8 +21,8 @@ public class Program {
 				try	{
 					device.write(TAKE_READING);
 					Thread.sleep(80);
-					int msb = device.read(0);
-					int lsb = device.read(1);
+					int msb = device.read(DATA_REGISTER);
+					int lsb = device.read();
 					console.println("MSB = " + String.format("0x%02x", msb));
 					console.println("LSB = " + String.format("0x%02x", lsb));
 					Thread.sleep(50);
