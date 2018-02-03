@@ -15,7 +15,7 @@ public class Program {
 		final Console console = new Console();
 		
 		try {
-			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_2);
+			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
 			I2CDevice device = i2c.getDevice(address);
 			console.promptForExit();
 			device.write(TAKE_READING);
