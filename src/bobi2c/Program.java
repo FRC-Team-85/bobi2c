@@ -9,11 +9,11 @@ public class Program {
 	
 	
 	private static final byte TAKE_READING = (byte)0x51;
-	private static final byte DATA_REGISTER = (byte)0xE1;
+	private static final byte DATA_REGISTER = (byte)0x71;
 	
 	public static void main(String[] args) {
 		final Console console = new Console();
-		byte[] buffer = new byte[3];
+		byte[] buffer = new byte[2];
 		
 		try {
 			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
@@ -22,11 +22,11 @@ public class Program {
 				try	{
 					device.write(TAKE_READING);
 					Thread.sleep(80);
-					device.read(DATA_REGISTER, buffer, 0, 3);
-					byte msb = buffer[1];
-					byte lsb = buffer[2];
-					console.println("MSB = " + String.format("0x%02x", msb));
-					console.println("LSB = " + String.format("0x%02x", lsb));
+					device.read(DATA_REGISTER, buffer, 0, 2);
+					byte msb = buffer[0];
+					byte lsb = buffer[1];
+					console.println("MSB = " + String.format("0x%02x", msb) + " (int: " + (int)msb + ")");
+					console.println("LSB = " + String.format("0x%02x", lsb) + " (int: " + (int)lsb + ")");
 					int range = (int)msb * 256 + (int)lsb;
 					console.println("Range = " + range);
 					Thread.sleep(50);
