@@ -22,12 +22,12 @@ public class Program {
 				try	{
 					device.write(TAKE_READING);
 					Thread.sleep(80);
-					device.read(DATA_REGISTER, buffer, 0, 2);
-					byte msb = buffer[0];
-					byte lsb = buffer[1];
+					device.read(DATA_REGISTER, buffer, 0, 3);
+					byte msb = buffer[1];
+					byte lsb = buffer[2];
 					console.println("MSB = " + String.format("0x%02x", msb));
 					console.println("LSB = " + String.format("0x%02x", lsb));
-					int range = msb * 256 + lsb;
+					int range = (int)msb * 256 + (int)lsb;
 					console.println("Range = " + range);
 					Thread.sleep(50);
 				} catch (Exception ex) {
