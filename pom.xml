@@ -14,6 +14,19 @@
           <target/>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <name>bobi2c</name>
@@ -25,11 +38,6 @@
   	<dependency>
   		<groupId>com.pi4j</groupId>
   		<artifactId>pi4j-core</artifactId>
-  		<version>1.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.pi4j</groupId>
-  		<artifactId>pi4j-device</artifactId>
   		<version>1.1</version>
   	</dependency>
   </dependencies>
