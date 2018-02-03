@@ -13,6 +13,7 @@ public class Program {
 	
 	public static void main(String[] args) {
 		final Console console = new Console();
+		byte[] buffer = new byte[2];
 		
 		try {
 			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
@@ -21,10 +22,13 @@ public class Program {
 				try	{
 					device.write(TAKE_READING);
 					Thread.sleep(80);
-					int msb = device.read(DATA_REGISTER);
-					int lsb = device.read();
+					device.read(DATA_REGISTER, buffer, 0, 2);
+					int msb = buffer[0];
+					int lsb = buffer[1];
 					console.println("MSB = " + String.format("0x%02x", msb));
 					console.println("LSB = " + String.format("0x%02x", lsb));
+					int range = msb * 256 + lsb;
+					console.println("Range = " + range);
 					Thread.sleep(50);
 				} catch (Exception ex) {
 					console.println(ex.toString());
