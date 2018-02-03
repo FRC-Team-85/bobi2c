@@ -28,7 +28,7 @@ public class Program {
 					console.println("MSB = " + String.format("0x%02x", msb));
 					console.println("LSB = " + String.format("0x%02x", lsb));
 					int range = msb * 256 + lsb;
-					console.println("Range = " + Integer.toUnsignedString(range));
+					console.println("Range = " + range);
 					Thread.sleep(50);
 				} catch (Exception ex) {
 					console.println(ex.toString());
