@@ -18,12 +18,14 @@ public class Program {
 			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
 			I2CDevice device = i2c.getDevice(address);
 			console.promptForExit();
-			device.write(TAKE_READING);
-			Thread.sleep(100);
-			int msb = device.read(DATA_MSB);
-			int lsb = device.read(DATA_LSB);
-			console.println("MSB = " + String.format("0x%02x", msb));
-			console.println("LSB = " + String.format("0x%02x", lsb));
+			while(!console.exiting()) {
+				device.write(TAKE_READING);
+				Thread.sleep(100);
+				int msb = device.read(DATA_MSB);
+				int lsb = device.read(DATA_LSB);
+				console.println("MSB = " + String.format("0x%02x", msb));
+				console.println("LSB = " + String.format("0x%02x", lsb));
+			}
 		}
 		catch (Exception ex) {
 			console.println(ex.toString());
