@@ -19,9 +19,9 @@ public class Program {
 			while(true) {
 				try	{
 					device.write(writeAddress, TAKE_READING);
-					Thread.sleep(200);
+					Thread.sleep(80);
 					device.read(readAddress, buffer, 0, 2);
-					short msb = (short)(buffer[0] & 0xFF);
+					short msb = (short)(buffer[0] & 0x7F);
 					short lsb = (short)(buffer[1] & 0xFF);
 					console.println("MSB = " + String.format("0x%02x", buffer[0]) + " (int: " + msb + ")");
 					console.println("LSB = " + String.format("0x%02x", buffer[1]) + " (int: " + lsb + ")");
