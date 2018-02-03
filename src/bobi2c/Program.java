@@ -19,7 +19,7 @@ public class Program {
 			while(true) {
 				try	{
 					device.write(writeAddress, TAKE_READING);
-					Thread.sleep(80);
+					Thread.sleep(200);
 					device.read(readAddress, buffer, 0, 2);
 					short msb = (short)(buffer[0] & 0xFF);
 					short lsb = (short)(buffer[1] & 0xFF);
