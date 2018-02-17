@@ -24,7 +24,7 @@ public class Program {
 				return;
 			}
 			
-			console.println("Arguments:")
+			console.println("Arguments:");
 			for (String arg : args)
 			{
 				console.println(arg);
