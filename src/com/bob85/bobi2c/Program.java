@@ -28,7 +28,7 @@ public class Program {
 			
 			I2CDevice device = i2c.getDevice(address);
 			
-			if (args.length > 1 && args[1] == "--set-address")
+			if (args.length > 1 && args[1] == "set-address")
 			{
 				if (args.length < 3) {
 					console.println("Please enter the address to set the device to.");
