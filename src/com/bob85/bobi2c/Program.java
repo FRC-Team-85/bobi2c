@@ -5,7 +5,7 @@ import com.pi4j.util.Console;
 
 public class Program {
 
-	private static int writeAddress = (byte)0x70;
+	private static int address = (byte)0x70;
 	private static final byte TAKE_READING = (byte)0x51;
 	private static final byte UNLOCK1 = (byte)0xaa;
 	private static final byte UNLOCK2 = (byte)0xa5;
@@ -17,16 +17,20 @@ public class Program {
 		
 		try {
 			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
-			I2CDevice device = i2c.getDevice(writeAddress);
 			
 			if (args.length == 0)
 			{
 				console.println("Arguments required.");
 			}
 			
-			if (args[0] == "--set-address")
+			address = Integer.parseInt(args[0]);
+			console.println("Address: " + address);
+			
+			I2CDevice device = i2c.getDevice(address);
+			
+			if (args.length > 2 && args[1] == "--set-address")
 			{
-				if (args.length < 2) {
+				if (args.length < 3) {
 					console.println("Please enter the address to set the device to.");
 					return;
 				}
@@ -36,9 +40,9 @@ public class Program {
 					throw new Exception("Address '" + newAddress + "' is invalid.");
 				}
 				
-				device.write(writeAddress, UNLOCK1);
-				device.write(writeAddress, UNLOCK2);
-				device.write(writeAddress, (byte)newAddress);
+				device.write(address, UNLOCK1);
+				device.write(address, UNLOCK2);
+				device.write(address, (byte)newAddress);
 				return;
 			}
 						
