@@ -21,6 +21,13 @@ public class Program {
 			if (args.length == 0)
 			{
 				console.println("Arguments required.");
+				return;
+			}
+			
+			console.println("Arguments:")
+			for (String arg : args)
+			{
+				console.println(arg);
 			}
 			
 			address = Integer.parseInt(args[0]);
