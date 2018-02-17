@@ -1,4 +1,4 @@
-package bobi2c;
+package com.bob85.bobi2c;
 
 import com.pi4j.io.i2c.*;
 import com.pi4j.util.Console;
@@ -19,7 +19,12 @@ public class Program {
 			I2CBus i2c = I2CFactory.getInstance(I2CBus.BUS_1);
 			I2CDevice device = i2c.getDevice(writeAddress);
 			
-			if (args.length > 0 && args[0] == "--set-address")
+			if (args.length == 0)
+			{
+				console.println("Arguments required.");
+			}
+			
+			if (args[0] == "--set-address")
 			{
 				if (args.length < 2) {
 					console.println("Please enter the address to set the device to.");
@@ -36,8 +41,7 @@ public class Program {
 				device.write(writeAddress, (byte)newAddress);
 				return;
 			}
-			
-			
+						
 			while(true) {
 				try	{
 					device.write(224, TAKE_READING);
