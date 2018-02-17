@@ -28,14 +28,14 @@ public class Program {
 			
 			I2CDevice device = i2c.getDevice(address);
 			
-			if (args.length > 2 && args[1] == "--set-address")
+			if (args.length > 1 && args[1] == "--set-address")
 			{
 				if (args.length < 3) {
 					console.println("Please enter the address to set the device to.");
 					return;
 				}
 				
-				int newAddress = Integer.parseInt(args[1]);
+				int newAddress = Integer.parseInt(args[2]);
 				if (newAddress <= 0 || newAddress == 80 || newAddress == 164 || newAddress == 170 || newAddress > 255) {
 					throw new Exception("Address '" + newAddress + "' is invalid.");
 				}
