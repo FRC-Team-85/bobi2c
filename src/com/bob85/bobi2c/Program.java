@@ -41,17 +41,19 @@ public class Program {
 					throw new Exception("Address '" + newAddress + "' is invalid.");
 				}
 				
+				console.println("Setting address to: " + newAddress);
 				device.write(address, UNLOCK1);
 				device.write(address, UNLOCK2);
 				device.write(address, (byte)newAddress);
+				Thread.sleep(200);
 				return;
 			}
 						
 			while(true) {
 				try	{
-					device.write(224, TAKE_READING);
+					device.write(address, TAKE_READING);
 					Thread.sleep(80);
-					device.read(225, buffer, 0, 2);
+					device.read(address & 0x01, buffer, 0, 2);
 					short msb = (short)(buffer[0] & 0x7F);
 					short lsb = (short)(buffer[1] & 0xFF);
 					console.println("MSB: " + String.format("0x%02x", buffer[0]) + " (int: " + msb + ")");
