@@ -42,10 +42,8 @@ public class Program {
 				}
 				
 				console.println("Setting address to: " + newAddress);
-				device.write(address, UNLOCK1);
-				device.write(address, UNLOCK2);
-				device.write(address, (byte)newAddress);
-				Thread.sleep(200);
+				byte[] bytes = new byte[] { UNLOCK1, UNLOCK2, (byte)newAddress};
+				device.write(address, bytes);
 				return;
 			}
 						
